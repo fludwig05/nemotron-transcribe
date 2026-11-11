@@ -1,0 +1,9 @@
+.venv/
+nemo-speech/
+models/
+samples/
+recordings/
+.flashinfer/
+__pycache__/
+*.pyc
+.python-version

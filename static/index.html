@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nemotron Transcribe</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">Nemotron 3.5 Transcribe</p>
+      <h1>Record or upload, then read the transcript.</h1>
+      <section class="gpu" aria-label="GPU usage">
+        <div class="gpu-top">
+          <span id="gpu-name">GPU</span>
+          <span id="gpu-readout">Reading the GPU…</span>
+        </div>
+        <div class="meter-row">
+          <span>Compute</span>
+          <div class="meter"><span id="gpu-meter"></span></div>
+        </div>
+        <div class="meter-row">
+          <span>Memory</span>
+          <div class="meter"><span id="gpu-memory-meter"></span></div>
+        </div>
+        <p id="gpu-memory" class="gpu-memory"></p>
+      </section>
+    </header>
+
+    <section class="panel" aria-labelledby="capture-heading">
+      <h2 id="capture-heading">Audio</h2>
+      <button id="record" type="button" class="record">
+        <span class="record-dot" aria-hidden="true"></span>
+        <span id="record-label">Record</span>
+      </button>
+      <p id="status" class="status" role="status">Ready.</p>
+      <label class="check" for="speaker-output">
+        <input id="speaker-output" type="checkbox">
+        Include tab or system audio
+      </label>
+      <p class="hint">The picker shares one tab at a time. Add each tab with Share audio enabled, then press Record.</p>
+      <div id="shared-panel" class="shared" hidden>
+        <button id="add-tab" type="button">Add tab</button>
+        <ul id="shared-list"></ul>
+      </div>
+      <p class="or">or</p>
+      <label class="drop" id="drop">
+        <input id="file" type="file" accept="audio/*,.wav,.mp3,.flac,.ogg,.m4a">
+        <span id="drop-label">Choose an audio file, or drop one here.</span>
+      </label>
+      <label class="check" for="speakers">
+        <input id="speakers" type="checkbox">
+        Speaker view
+      </label>
+      <p class="hint">Speaker view asks for speaker tags and word times, then groups the result by speaker.</p>
+      <label class="prompt-label" for="prompt">Instruction</label>
+      <textarea id="prompt" rows="4">Audio transcription. Language: as spoken. Wording: verbatim, including fillers and repetitions. Formatting: punctuation and capitalization. Output: transcript only.</textarea>
+    </section>
+
+    <section class="panel transcript-panel" aria-labelledby="transcript-heading">
+      <div class="transcript-bar">
+        <h2 id="transcript-heading">Transcript</h2>
+        <span id="preview-count" class="preview-count"></span>
+        <button id="copy" type="button" disabled>Copy</button>
+      </div>
+      <div id="preview" class="preview" tabindex="0">
+        <p id="transcript" class="transcript is-empty">The transcript will appear here.</p>
+      </div>
+    </section>
+
+    <section class="panel library" aria-labelledby="library-heading">
+      <h2 id="library-heading">Saved recordings</h2>
+      <p id="library-empty" class="hint">Each transcription is kept here with its audio.</p>
+      <ul id="library"></ul>
+    </section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>
